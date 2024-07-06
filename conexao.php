@@ -10,21 +10,34 @@ try {
 
     $sql_banco = "CREATE DATABASE IF NOT EXISTS loja; USE loja";
     $conexao->exec($sql_banco);
+    $conexao->exec("USE loja");
 
-    $sql_tabelas = "
-    CREATE TABLE IF NOT EXISTS cadastro_produto (
+    $sql_tabelas_produto = "
+    CREATE TABLE IF NOT EXISTS produto (
     id int AUTO_INCREMENT PRIMARY KEY,
     nome_prod VARCHAR(255) NOT NULL,
     preco_prod DECIMAL(10,2) NOT NULL,
-    foto_prod VARCHAR(255) NOT NULL);
+    foto_prod VARCHAR(255) NOT NULL,
+    destaque_prod BOOLEAN NOT NULL
+    )";
     
-    CREATE TABLE IF NOT EXISTS cadastro_usuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_cliente VARCHAR(255) NOT NULL,
-    email_cliente VARCHAR(255) NOT NULL,
-    senha_cliente VARCHAR(255) NOT NULL)";
+    $conexao->exec($sql_tabelas_produto);
 
-    $conexao->exec($sql_tabelas);
+
+    $sql_tabelas_usuario = "
+    CREATE TABLE IF NOT EXISTS usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario VARCHAR(255) UNIQUE NOT NULL,
+    email_usuario VARCHAR(255)  UNIQUE NOT NULL,
+    senha_usuario VARCHAR(255)  UNIQUE NOT NULL)";
+
+    $conexao->exec($sql_tabelas_usuario);
+
+    echo "Banco e Tabelas Criadas com total Sucesso";
+
+} catch (PDOException $e) {
+
+    echo $sql . "<br>" . $e->getMessage();
 
 }
 

@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro/Login</title>
+    <title>Pagina Login Hznd Shope</title>
     <link href="Imagem.png" rel="icon"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <style>
+<style>
 
-    body {
-      background-color: #d3d3d3;
-
-    }
-
-  a{
-    color: red;
+a{
     text-decoration: none;
-  }
+    color: #808080;
+}
 
-
-
-  </style>
+</style>
 
 </head>
-
 <body>
 
 <!-- Imagem no NavBar -->
@@ -57,60 +47,77 @@
         <li class="nav-item">
           <a class="nav-link" href="carrinho.php">Carrinho</a>
         </li>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Procurar">
+        <button class="btn btn-outline-success" type="submit">Procurar</button>
+      </form>
     </div>
   </div>
 </nav>
-    <br><br><br>
+<br><br>
 
+<h1>Faça o Seu Login na Hznd Shope</h1> <br><br>
 
 <form method="post" action="#">
 
-Informe o seu Nome: <input type="text" name="nm_cad" required><br><br>
-Informe o seu Email: <input type="email" name="email_cad" required> <br><br>
-Informe a sua Senha: <input type="password" name="senha_cad" required> <br><br>
-<input type="submit" values="Cadastrar"><br><br><br><br><br>
+Digite o Seu Email: <input type="email" name="email_Login" placeholder="Digite o Seu email:" required> <br><br>
+Digite a Sua Senha: <input type="password" name="senha_Login" placeholder="Digite a sua Senha" required> <br><br>
 
-</form> <br><br>
+<input type="submit" name="Enviar">
 
+</form>
 
-<button type="button" class="btn btn-outline-dark"><a href="login.php">Ja tem Cadastro?</a></button>
-<br><br>
+<br><br><br>
 
-<h1>Entrar com o facebook ou Google</h1>
-
-
-
+<button type="button" class="btn btn-outline-secondary"><a href="cad_log.php">Não tem Cadastro? Clique em Mim</a></button>
+    
 </body>
 
 </html>
 
+
 <?php 
+
+$error = '';
 
 require "conexao.php";
 
-if($_POST) {
-    $nome = $_POST['nm_cad'];
-    $email = $_POST['email_cad'];
-    $senha = $_POST['senha_cad'];
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $emailVerificar = $_POST['email_Login'];
+    $senhaVerificar = $_POST['senha_Login'];
 
-    if(!empty($nome) && !empty($email) && !empty($senha)) {
+    if(!empty($emailVerificar) && !empty($senhaVerificar)) {
         try {
+
             require "conexao.php";
+            
+            $sql = "SELECT * FROM usuario WHERE email_usuario=:email";
+            $stmt = $conexao->prepare($sql);
+            $stmt->bindParam('email', $emailVerificar);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Criptografando a senha do usuario
+            if($usuario) {
+                if (password_verify($senhaVerificar, $usuario['senha_usuario'])) {
+                    $_SESSION['email'] = $emailVerificar;
+                    header('location: index.php');
+                    exit;
+                } else {
+                    $error = "Erro: Email ou senha Incorreto";
+                }
 
-            $senhacrip = password_hash($senha, PASSWORD_DEFAULT);
+            }else {
+                $error = "Erro: Email Não Cadastrado";
+            }
 
-            // Criando Usuario e inserindo no Banco A senha cadastrada esta sendo criptografada
-            $sql_usuario = "INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario) VALUES ('$nome','$email','$senhacrip')";
-
-            $conexao->exec($sql_usuario);
-            header('location: index.php');
-            exit;
-        } catch (PDOException $e) {
-            echo $sql_banco . "<br>" . $e->getMessage();
+        }catch (PDOException $e) {
+            $error = "Erro Ocorreu um Problema";
         }
+
+    } else {
+        $error = "Por Favor, Preencha todos os campos";
     }
+
 }
 
 ?>

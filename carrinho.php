@@ -40,7 +40,7 @@
           <a class="nav-link" href="cad_log.php">Cadastrar/Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="cad_prod.php">Cadastrar Produto</a>
+          <a class="nav-link" href="AreadADM.php">Area Do Administrador</a>
         </li>
     </div>
   </div>
