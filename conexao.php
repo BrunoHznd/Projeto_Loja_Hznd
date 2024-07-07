@@ -3,6 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+$dbname = "loja";
 
 try {
     $conexao = new PDO("mysql:host=$servername", $username, $password);
@@ -33,7 +34,7 @@ try {
 
     $conexao->exec($sql_tabelas_usuario);
 
-    echo "Banco e Tabelas Criadas com total Sucesso";
+    // echo "Banco e Tabelas Criadas com total Sucesso";
 
 } catch (PDOException $e) {
 
