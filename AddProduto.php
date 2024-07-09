@@ -50,6 +50,10 @@
   </div>
 </nav><br><br>
 
+<h2>Adicionar Produto</h2> <br><br>
+
+<p><a href="AreaADM.php">Area Do Administrador</a> | <a href="InfoProduto.php">Mudar Informações do Produto</a> | <a href="InfoProduto.php">Excluir Produto</a></p>
+
 <form action="#" method="post" enctype="multipart/form-data">
 
 Insira o nome do produto: <input type="text" name="nm_prod" required placeholder="nome"> <br><br>
@@ -115,7 +119,7 @@ require "conexao.php";
 
 
 
-// Erro Versão Bruno
+//Versão Bruno
 
  if($_SERVER['REQUEST_METHOD'] == 'POST') {
 

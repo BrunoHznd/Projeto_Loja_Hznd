@@ -12,7 +12,7 @@
 
 <body>
 
-<h1>Altere Informações Dos Produtos Cadastrados</h1>
+<h1>Altere Informações Dos Produtos Cadastrados Ou Delete O produto</h1>
 
 
 
@@ -39,9 +39,13 @@ if($resultados) {
 
         //botao para editar o Produto Que foi selecionado para edição...
         ?>
-        <a href='updateProd.php'>Editar Produto</a> <br><br><br>
+        <a href='updateProd.php?nome=<?php echo $produto['nome_prod']; ?>' >Editar Produto</a> <b> - | - </b>
+        <a href='delProduto.php?nome=<?php echo $produto['nome_prod']; ?>' >Excluir Produto</a> <br><br><br>
+
         <?php
     }
 }
+
+$conexao = null;
 
 ?>

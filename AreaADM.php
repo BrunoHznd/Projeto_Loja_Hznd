@@ -40,23 +40,24 @@
 <script>
 
 // email Administrador: admin@email.com Senha: Admin123
-   var email = prompt('Informe o Email De Administrador');
 
-   if(email == 'admin@email.com') {
-     var senha = window.prompt('Informe a Senha de Administrador');
-     if(senha == 'Admin123') {
-       window.alert('Logado com Sucesso na area do Administrador');
-     }else {
-       window.alert('Senha Incorreta');
-       window.location.href = "http://localhost/HzndShop/index.php";
-     }
+  //  var email = prompt('Informe o Email De Administrador');
+
+  //  if(email == 'admin@email.com') {
+  //    var senha = window.prompt('Informe a Senha de Administrador');
+  //    if(senha == 'Admin123') {
+  //      window.alert('Logado com Sucesso na area do Administrador');
+  //    }else {
+  //      window.alert('Senha Incorreta');
+  //      window.location.href = "http://localhost/HzndShop/index.php";
+  //    }
     
-   }else {
-     window.alert('Email Incorreto');
-     window.location.href = "http://localhost/HzndShop/index.php";
-   }
+  //  }else {
+  //    window.alert('Email Incorreto');
+  //    window.location.href = "http://localhost/HzndShop/index.php";
+  //  }
 
-   </script>
+  //  </script>
 
 <!-- Imagem no NavBar -->
 
@@ -99,11 +100,11 @@
 
 <div>
 
-<button type="button" class="btn btn-outline-success"><a href="AddProduto.php">Adicionar Produtos</a></button><br><br>
+<button type="button" class="btn btn-outline-success" onclick="window.location.href='AddProduto.php' ">Adicionar Produtos</button><br><br>
 
-<button type="button" class="btn btn-outline-primary"><a href="InfoProduto.php">Mudar Informações Dos Produtos</a></button> <br><br>
+<button type="button" class="btn btn-outline-primary" onclick="window.location.href='InfoProduto.php' ">Mudar Informações Dos Produtos</button> <br><br>
 
-<button type="button" class="btn btn-outline-danger"><a href="delProduto.php">Deletar Produtos</a></button> <br><br>
+<button type="button" class="btn btn-outline-danger" onclick="window.location.href='InfoProduto.php'">Deletar Produtos</button> <br><br>
 
 </div>
 
