@@ -20,8 +20,17 @@ deletar = deletar.toUpperCase();
 
 if(deletar == "S") {
     window.alert("Você Deletou o Produto");
-    //gabiarra (Fazer o javascript funcionar antes do PHP)
-    window.location.href = "http://localhost/HzndShop/deletarProduto.php";
+
+    //passando o valor de PHP para Javascript (ChatGPT) e depois mandar para o arquivo php ;-;
+
+   //Pegando o nome do produto da url
+   const urlParams = new URLSearchParams(window.location.search);
+   const nomeProduto = urlParams.get('nome');
+    
+    
+    //Redirecionando com o nome do produto como parametro
+    window.location.href = "http://localhost/HzndShop/deletarProduto.php?nome=" + encodeURIComponent(nomeProduto) ;
+
 } else if (deletar === "N"){
     window.alert("Você não deletou o Produto");
     window.location.href = "http://localhost/HzndShop/AreaADM.php";

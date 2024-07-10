@@ -40,7 +40,9 @@ if($resultados) {
         //botao para editar o Produto Que foi selecionado para edição...
         ?>
         <a href='updateProd.php?nome=<?php echo $produto['nome_prod']; ?>' >Editar Produto</a> <b> - | - </b>
-        <a href='delProduto.php?nome=<?php echo $produto['nome_prod']; ?>' >Excluir Produto</a> <br><br><br>
+
+        <!-- Mandando o valor da variavel junto... -->
+        <a href='delProduto.php?nome=<?php echo urlencode($produto['nome_prod']); ?>' >Excluir Produto</a> <br><br><br>
 
         <?php
     }

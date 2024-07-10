@@ -41,23 +41,23 @@
 
 // email Administrador: admin@email.com Senha: Admin123
 
-  //  var email = prompt('Informe o Email De Administrador');
+    var email = prompt('Informe o Email De Administrador');
 
-  //  if(email == 'admin@email.com') {
-  //    var senha = window.prompt('Informe a Senha de Administrador');
-  //    if(senha == 'Admin123') {
-  //      window.alert('Logado com Sucesso na area do Administrador');
-  //    }else {
-  //      window.alert('Senha Incorreta');
-  //      window.location.href = "http://localhost/HzndShop/index.php";
-  //    }
+    if(email == 'admin@email.com') {
+      var senha = window.prompt('Informe a Senha de Administrador');
+      if(senha == 'Admin123') {
+        window.alert('Logado com Sucesso na area do Administrador');
+      }else {
+        window.alert('Senha Incorreta');
+        window.location.href = "http://localhost/HzndShop/index.php";
+      }
     
-  //  }else {
-  //    window.alert('Email Incorreto');
-  //    window.location.href = "http://localhost/HzndShop/index.php";
-  //  }
+    }else {
+      window.alert('Email Incorreto');
+      window.location.href = "http://localhost/HzndShop/index.php";
+    }
 
-  //  </script>
+    </script>
 
 <!-- Imagem no NavBar -->
 
